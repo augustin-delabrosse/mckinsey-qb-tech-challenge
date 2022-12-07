@@ -59,9 +59,10 @@ with st.container():
 
             • 1 human being dying from famine every 4 seconds...
 ''')
+        st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
     with text_column:
         st_lottie(lottie_coding, height=500, key="coding") # st.image(img_food)
-    st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
+    
 # ---- WHAT I DO ----
 with st.container():
     st.write("---")
