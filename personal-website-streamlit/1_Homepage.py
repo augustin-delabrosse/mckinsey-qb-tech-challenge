@@ -6,7 +6,24 @@ import webbrowser
 
 # Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Foodix-Silo-Detection", page_icon=":corn:", layout="wide")
-st.sidebar.success("Select a page above.")
+markdown = """
+GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
+"""
+
+st.sidebar.success("👆👆👆 Select a page above:")
+st.sidebar.title("💻 Our work: ")
+st.sidebar.info(markdown)
+
+st.sidebar.title("📬 Contact:")
+markdown = """
+zidi.yang@hec.edu 
+milos.basic@hec.edu
+antoine.mellerio@hec.edu
+camille.epitalon@hec.edu
+augustin.de-la-brosse@hec.edu
+michael.liersch@hec.edu
+"""
+st.sidebar.info(markdown)
 
 def load_lottieurl(url):
     r = requests.get(url)
