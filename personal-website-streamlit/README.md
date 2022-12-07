@@ -40,6 +40,10 @@ leafmap==0.14.0
 plotly==5.9.0
 ```
 
+## Model
+Please download the classification model here : https://drive.google.com/file/d/1ncW194FtWZnhZ8j_ph2zDgpxxFFu03UU/view?usp=sharing.  
+Unzip it and place it into the folder `models` for the webapp to work properly.  
+  
 ## Run the app
 * Terminal
     ```
