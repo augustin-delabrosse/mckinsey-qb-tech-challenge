@@ -27,32 +27,57 @@ local_css("style/style.css")
 lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/private_files/lf30_4lyswkde.json")
 img_silos_satelite = Image.open("images/silos_satelite.png")
 img_silos_segmentation = Image.open("images/silos_segmentation.png")
+img_food = Image.open("images/danger.png")
+img_food = img_food.resize((200, 200))
 
 # ---- HEADER SECTION ----
 with st.container():
     st.title("Foodix")
-    st.subheader("Diminish global famine crisis making cereals available for all families and communities across the globe")
-    st.write(
+    st.header("Our Mission : Diminish global famine crisis making cereals available for all families and communities across the globe")
+    st.subheader(
         '''
-            ______________________________________________________________________________
-            ______________________________________________________________________________
-            ______________________________________________________________________________
-        '''
-    )
-    st.write("[Learn More >](https://pythonandvba.com)")
+        “The world is moving backwards in efforts to eliminate hunger and malnutrition” (FAO)
+''')
+#     st.write(
+#         '''
+#         • 828 million people were affected by hunger in 2021
+#         
+#         • The number of hungry people increased by 150 million in 2019
+#         
+#         • 1 human being dying from famine every 4 seconds...
+# ''')
 
+    image_column, text_column = st.columns([1, 3])
+    with image_column:
+        st.image(img_food)
+    with text_column:
+        st.write(
+            '''
+            • 828 million people were affected by hunger in 2021
+
+            • The number of hungry people increased by 150 million in 2019
+
+            • 1 human being dying from famine every 4 seconds...
+''')
+    st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
 # ---- WHAT I DO ----
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
         st.header("Who we are and what we do:")
+        st.subheader("We are 6 really cool McKinsey consultants with 20+ years of experiences")
+        st.write( """
+            - Our experience includes, among other things, agriculture, infrastructures, sustainability and data science
+            - +700 projects carried out throughout our career
+            """
+        )
         st.write("##")
         st.write(
             """
             About McKinsey:
-            - Our experience includes agriculture __________________________
-            - 5000 Consultants only in Idao 
+            - Our expertise includes : Strategy, Transformation, Private Equity, ...
+            - +18000 consultants worldwide 
       
             If this sounds interesting to you, consider hiring us for your project.
             """
@@ -65,7 +90,7 @@ with st.container():
 # ---- PROJECTS ----
 with st.container():
     st.write("---")
-    st.header("Our Data Projects:")
+    st.header(" Zoom on one of our project: classification and segmentation of silos on satellite images")
     st.write("##")
     image_column, text_column = st.columns((1, 2))
     with image_column:
@@ -74,12 +99,10 @@ with st.container():
         st.subheader("Classification of Silos from Satelite images")
         st.write(
             """
-                ______________________________________________________________________________
-                ______________________________________________________________________________
-                ______________________________________________________________________________
+                We used deep learning methods to determine whether we could find silos within a certain zone 
             """
         )
-        st.markdown("[See model results...](http://localhost:8501/Classification_model)")
+        st.markdown("In case you're interested in our beautiful deep learning model : [see model results...](http://localhost:8501/Classification_model)")
 with st.container():
     image_column, text_column = st.columns((1, 2))
     with image_column:
@@ -88,10 +111,9 @@ with st.container():
         st.subheader("Picture Segmentation and exact localization of silos")
         st.write(
             """
-                ______________________________________________________________________________
-                ______________________________________________________________________________
-                ______________________________________________________________________________
+                We then tried to segmentate our pictures to pinpoint the exact localization of the silos.
+                
             """
         )
-        st.markdown("[See model results...](http://localhost:8501/Segmentation_model)")
+        st.markdown("If you want to know more about how we achieved this amazing feat : [see model results...](http://localhost:8501/Segmentation_model)")
 
