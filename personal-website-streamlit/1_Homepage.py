@@ -2,10 +2,12 @@ import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
 from PIL import Image
+from utils.add_logo import add_logo
 import webbrowser
 
-# Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Foodix-Silo-Detection", page_icon=":corn:", layout="wide")
+# Sidebar __________________________________________________________________________
+st.set_page_config(page_title="Foodix-Silo-Detection", page_icon=":corn:", layout="wide")  
+add_logo()
 markdown = """
 GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
 """

@@ -1,4 +1,7 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import os
+from utils.add_logo import add_logo
 import tensorflow as tf
 from utils.classif import classif_silo
 import os
@@ -6,6 +9,28 @@ import io
 from PIL import Image
 import numpy as np
 import pandas as pd
+
+# Sidebar __________________________________________________________________________
+st.set_page_config(page_title="Foodix-Individual-Prediction", page_icon=":corn:", layout="wide")
+add_logo()
+markdown = """
+GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
+"""
+st.sidebar.success("👆👆👆 Select a page above:")
+st.sidebar.title("💻 Our work: ")
+st.sidebar.info(markdown)
+
+st.sidebar.title("📬 Contact:")
+markdown = """
+zidi.yang@hec.edu 
+milos.basic@hec.edu
+antoine.mellerio@hec.edu
+camille.epitalon@hec.edu
+augustin.de-la-brosse@hec.edu
+michael.liersch@hec.edu
+"""
+st.sidebar.info(markdown)
+# Model _______________________________________________________________________
 
 def saveImage(byteImage):
     bytesImg = io.BytesIO(byteImage)
@@ -15,11 +40,9 @@ def saveImage(byteImage):
 
 model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
 
-st.set_page_config(page_title="Foodix-Individual-Prediction", page_icon=":corn:", layout="wide")
-st.sidebar.success("Select a page above.")
-
+# Main Body __________________________________________________________________________
 with st.container():
-    st.title("Individual Prediction")
+    st.title("Individual Predictions 🔎")
     st.subheader("Upload your own pictures and apply the model to them")
     st.write(
         '''
@@ -27,7 +50,7 @@ with st.container():
         '''
     )
 
-    
+
 list_file_png = st.file_uploader("Upload a PNG image", type=([".png"]), accept_multiple_files=True)
 
 if list_file_png:
@@ -51,6 +74,7 @@ if list_file_png:
 
     st.write(f"✅ Silos detected in {np.sum(probas>.5)} images.")
 
+
     col1, col2, col3, col4, col5 = st.columns(5)
     col_silos = [col1, col4]
     idx_silos = 0
@@ -70,6 +94,7 @@ if list_file_png:
     
     st.write(' ')
     st.write(f"❌ No silo detected in {len(list(probas))-np.sum(probas>.5)} images.")
+
 
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     col_no_silos = [col1, col2, col3, col4, col5, col6]

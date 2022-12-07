@@ -1,12 +1,25 @@
-# Use Streamlit to create a personal website
+# Foodix Satelite image analysis tool 🛠:
 
-Create a personal website using Python and the Streamlit library. This website will be able to serve as a place for you to share your thoughts, projects, and anything else you want.
+This tool helps the sales team of Foodix to identify and locate Silos accross the whole globe, thus enabling them to find new potential customers. 
+Usecases are to detect Silos and sell them their superior technology, or to identify areas with out any Silos.
 
-## Video Tutorial
-[![YouTube Video](https://img.youtube.com/vi/VqgUkExPvLY/0.jpg)](https://youtu.be/VqgUkExPvLY)
+## Homepage
+General information about the business and about McKinsey
 
-## Check out the website here
-📢 https://share.streamlit.io/sven-bo/personal-website-streamlit/app.py
+## Check out the website of McKinsey here
+📢 https://www.mckinsey.com/
+
+## ______________________
+
+______________________
+
+## Individual Predictions
+
+Upload any of your pictures and check if there is a Silo in it.
+
+## Check your coordinates
+
+Check any coordinates worldwide and see if there are some silos at that given coordination.
 
 ## Screenshots
 ![Screenshots](/demo/screenshot1.jpg?raw=true)
@@ -17,11 +30,14 @@ Create a personal website using Python and the Streamlit library. This website w
 ## Requirements
 ```
 streamlit_lottie==0.0.2
-streamlit==1.3.0
+streamlit== 1.15.2
 requests==2.24.0
 Pillow==8.4.0
 protobuf~=3.19.0
 watchdog==2.1.8
+selenium==4.7.2
+leafmap==0.14.0
+plotly==5.9.0
 ```
 
 ## Model
@@ -32,6 +48,7 @@ Unzip it and place it into the folder `models` for the webapp to work properly.
 * Terminal
     ```
     # vanilla terminal
+    pip install -r requirements.txt
     streamlit run app.py
 
     # poetry
@@ -43,25 +60,18 @@ Unzip it and place it into the folder `models` for the webapp to work properly.
     ```
 * VSCode
   * Open the repo directory in VSCode
-  * Open `app.py`
+  * Open `1_Homepage.py`
   * Start debugging with F5
   * Stop debugging with Shift-F5
 
-## Author
-* Sven from Coding Is Fun
-* YouTube: https://youtube.com/c/CodingIsFun
-* Website: https://pythonandvba.com
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X47Q0EG)
+## Authors
+🚹
+  Zidi Yang: zidi.yang@hec.edu 
+  Milos Basic: milos.basic@hec.edu
+  Antoine Mellerio: antoine.mellerio@hec.edu
+  Camille Epitalon: camille.epitalon@hec.edu
+  Augustin de La Brosse: augustin.de-la-brosse@hec.edu
+  Michael Liersch: michael.liersch@hec.edu
 
 ## Feedback
-If you have any feedback, please reach out to me at contact@pythonandvba.com
-![Logo](https://www.pythonandvba.com/banner-img)
-
-## Addendum
-[@pythoninthegrass](https://github.com/pythoninthegrass) additions
-* Setup [Poetry](https://python-poetry.org/docs/#installation), [reverted protobuf](https://discuss.streamlit.io/t/typeerror-descriptors-cannot-not-be-created-directly/25639/11)
-* Added [watchdog](https://docs.streamlit.io/library/advanced-features/configuration) for performance
-* VSCode [debugging](https://code.visualstudio.com/docs/python/debugging) with [launch.json](https://medium.com/geekculture/how-to-run-your-streamlit-apps-in-vscode-3417da669fc)
-* Exclusions with `.gitignore`
-* Linting via `.editorconfig`
+📥 If you have any feedback, please reach out to us !!!
