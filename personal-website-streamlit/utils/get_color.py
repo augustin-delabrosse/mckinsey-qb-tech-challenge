@@ -1,4 +1,11 @@
 import toml
+"""
+    bottom_right_coordinates(): 
+        Usecase:Gets Hexode from toml style file
+        Input:  _____
+        Output: Returns Hexcode
+"""
+
 def primaryColor():
     dict_color = (toml.load(".streamlit/config.toml")["theme"])
     return dict_color["primaryColor"]

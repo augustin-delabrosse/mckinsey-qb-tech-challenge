@@ -7,6 +7,14 @@ from sklearn.metrics import roc_curve, auc
 from utils.get_color import *
 import plotly.graph_objects as go
 
+"""
+    roc_curve_plot(lat, lon): 
+        Usecase:Computes AUC curve
+        Input:  y (numerical array): Actual labels
+                y_score (numerical array): Predicted labels
+        Output: Plotly graph object that depicts the ROC curve
+"""
+
 def roc_curve_plot(y, y_score):
     fpr, tpr, thresholds = roc_curve(y, y_score)
     # Evaluating model performance at various thresholds

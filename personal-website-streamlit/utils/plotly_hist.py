@@ -6,12 +6,25 @@ from sklearn.datasets import make_classification
 from utils.get_color import *
 import plotly.graph_objects as go
 
-X, y = make_classification(n_samples=500, random_state=0)
-
-model = LogisticRegression()
-model.fit(X, y)
-y_score = model.predict_proba(X)[:, 1]
-fpr, tpr, thresholds = roc_curve(y, y_score)
+"""
+    plotly_hist(lat, lon): 
+        Usecase:Computes AUC curve
+        Input:  X
+                    - array for no-silo values (0)
+                y
+                    - array for silo values (1)
+                name_X
+                    - nave variable X
+                name_y
+                    - nave variable y
+                title
+                    - title of the plot
+                x_axis
+                    - x_axis title of the plot
+                y_axis
+                    - y_axis title of the plot
+        Output: Plotly graph object that depicts a Hist
+"""
 
 # The histogram of scores compared to true labels
 def plotly_hist(X, y, name_X, name_y, title, x_axis, y_axis):
