@@ -29,15 +29,12 @@ img_silos_satelite = Image.open("images/silos_satelite.png")
 img_silos_segmentation = Image.open("images/silos_segmentation.png")
 img_food = Image.open("images/danger.png")
 img_food = img_food.resize((200, 200))
+img_mckinsey = Image.open('images/McKinsey_Script_Mark_2019.svg.png')
 
 # ---- HEADER SECTION ----
 with st.container():
     st.title("Foodix")
-    st.header("Our Mission : Diminish global famine crisis making cereals available for all families and communities across the globe")
-    st.subheader(
-        '''
-        “The world is moving backwards in efforts to eliminate hunger and malnutrition” (FAO)
-''')
+    
 #     st.write(
 #         '''
 #         • 828 million people were affected by hunger in 2021
@@ -47,10 +44,13 @@ with st.container():
 #         • 1 human being dying from famine every 4 seconds...
 # ''')
 
-    image_column, text_column = st.columns([1, 3])
+    image_column, text_column = st.columns([3, 1])
     with image_column:
-        st.image(img_food)
-    with text_column:
+        st.header("Our Mission : Diminish global famine crisis making cereals available for all families and communities across the globe")
+        st.subheader(
+            '''
+            “The world is moving backwards in efforts to eliminate hunger and malnutrition” (FAO)
+    ''')
         st.write(
             '''
             • 828 million people were affected by hunger in 2021
@@ -59,13 +59,15 @@ with st.container():
 
             • 1 human being dying from famine every 4 seconds...
 ''')
+    with text_column:
+        st_lottie(lottie_coding, height=500, key="coding") # st.image(img_food)
     st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
 # ---- WHAT I DO ----
 with st.container():
     st.write("---")
+    st.header("Who we are and what we do:")
     left_column, right_column = st.columns(2)
     with left_column:
-        st.header("Who we are and what we do:")
         st.subheader("We are 6 really cool McKinsey consultants with 20+ years of experiences")
         st.write( """
             - Our experience includes, among other things, agriculture, infrastructures, sustainability and data science
@@ -84,8 +86,7 @@ with st.container():
         )
         st.write("[Our Website >](https://www.mckinsey.com/)")
     with right_column:
-        
-        st_lottie(lottie_coding, height=500, key="coding")
+        st.image(img_mckinsey)
 
 # ---- PROJECTS ----
 with st.container():
