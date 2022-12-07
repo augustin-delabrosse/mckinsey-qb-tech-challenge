@@ -1,7 +1,10 @@
+webbrowser==3.11.1
 streamlit_lottie==0.0.2
-streamlit==1.3.0
+streamlit== 1.15.2
 requests==2.24.0
 Pillow==8.4.0
 protobuf~=3.19.0
 watchdog==2.1.8
-webbrowser==3.11.1
+selenium==4.7.2
+leafmap==0.14.0
+plotly==5.9.0
