@@ -1,5 +1,19 @@
 import streamlit as st
+import tensorflow as tf
+from utils.classif import classif_silo
+import os
+import io
+from PIL import Image
+import numpy as np
+import pandas as pd
 
+def saveImage(byteImage):
+    bytesImg = io.BytesIO(byteImage)
+    imgFile = Image.open(bytesImg)   
+   
+    return imgFile
+
+model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
 
 st.set_page_config(page_title="Foodix-Individual-Prediction", page_icon=":corn:", layout="wide")
 st.sidebar.success("Select a page above.")
@@ -14,27 +28,56 @@ with st.container():
     )
 
     
-file_png = st.file_uploader("Upload a PNG image", type=([".png"]))
+list_file_png = st.file_uploader("Upload a PNG image", type=([".png"]), accept_multiple_files=True)
 
-if file_png:
+if list_file_png:
+    # Collect bytes
+    files_bytes = [file.read() for file in list_file_png]
+    # Apply model
+    probas = classif_silo(files_bytes, model)
+
+    # Plotting the proportion of images having silos
+    n_pic_silos = np.sum(probas>.5)
+    n_pic_no_silos = np.sum(probas<=.5)
+    data_bar_chart = pd.DataFrame({
+        "Type": ["Silo found", "No silo found"], 
+        "Number" : [n_pic_silos, n_pic_no_silos]
+    })
     col1, col2, col3 = st.columns(3)
-
     with col1:
-        st.write(' ')
-
+        st.write(f"Repartition of the images :")
     with col2:
-        st.image(file_png)
-        st.write("Uploaded picture")
+        st.bar_chart(data_bar_chart, x="Type", y="Number", width=50)
 
-    with col3:
-        st.write(' ')
+    st.write(f"✅ Silos detected in {np.sum(probas>.5)} images.")
 
-st.write(
-        '''
-        
-           To upload an array of pictures please put in the path.
-        '''
-    )
-path_folder = st.text_input('Path to image folder:')
-st.write('You selected:', path_folder)   
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col_silos = [col1, col4]
+    idx_silos = 0
+    list_no_silos = []
+    proba_no_silos = []
 
+    for idx, file_pgn in enumerate(list_file_png):
+        proba = probas[idx]
+        if proba>.5:
+            with col_silos[idx_silos%2]:
+                st.image(file_pgn)
+                st.write(f"File : {file_pgn.name}")
+            idx_silos += 1
+        else:
+            list_no_silos += [file_pgn]
+            proba_no_silos += [proba]
+    
+    st.write(' ')
+    st.write(f"❌ No silo detected in {len(list(probas))-np.sum(probas>.5)} images.")
+
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
+    col_no_silos = [col1, col2, col3, col4, col5, col6]
+    for idx, file_pgn in enumerate(list_no_silos):
+        proba = proba_no_silos[idx]
+        if proba>.5:
+            pass
+        else:
+            with col_no_silos[idx%6]:
+                st.image(file_pgn)
+                st.write(f"File : {file_pgn.name}")

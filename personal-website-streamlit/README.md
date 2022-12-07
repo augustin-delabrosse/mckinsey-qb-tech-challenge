@@ -24,6 +24,10 @@ protobuf~=3.19.0
 watchdog==2.1.8
 ```
 
+## Model
+Please download the classification model here : https://drive.google.com/file/d/1ncW194FtWZnhZ8j_ph2zDgpxxFFu03UU/view?usp=sharing.  
+Unzip it and place it into the folder `models` for the webapp to work properly.  
+  
 ## Run the app
 * Terminal
     ```
