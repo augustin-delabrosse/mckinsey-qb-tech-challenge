@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import os
-from utils.add_logo import add_logo
+from utils.add_logo import add_logo2
 import tensorflow as tf
 from utils.classif import classif_silo
 import os
@@ -12,7 +12,7 @@ import pandas as pd
 
 # Sidebar __________________________________________________________________________
 st.set_page_config(page_title="Foodix-Individual-Prediction", page_icon=":corn:", layout="wide")
-add_logo()
+add_logo2("images/geosilo_logo.png")
 markdown = """
 GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
 """
