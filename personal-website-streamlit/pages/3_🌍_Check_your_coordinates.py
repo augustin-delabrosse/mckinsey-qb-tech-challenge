@@ -7,11 +7,11 @@ from PIL import Image
 import leafmap.foliumap as leafmap
 import os 
 import cv2
-from utils.add_logo import add_logo
+from utils.add_logo import add_logo2
 
 # Sidebar __________________________________________________________________________
 st.set_page_config(page_title="Foodix-Coordinates", page_icon=":corn:", layout="wide")
-add_logo()
+add_logo2("images/geosilo_logo.png")
 markdown = """
 GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
 """
@@ -77,11 +77,8 @@ if coordinates != "":
         st.write(' ')
 
     with col2:
-         st.markdown("<h5 style='text-align: center; color: darkgreen;'>Cropped image</h5>", unsafe_allow_html=True)
+         st.markdown("<h5 style='text-align: center; color: midnightblue;'>Cropped image</h5>", unsafe_allow_html=True)
          st.image(image_map)
     
     with col3:
         st.write(' ')
-        
-
-   
