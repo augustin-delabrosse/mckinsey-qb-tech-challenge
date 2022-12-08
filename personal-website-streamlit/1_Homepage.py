@@ -2,12 +2,15 @@ import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
 from PIL import Image
-from utils.add_logo import add_logo
+from utils.add_logo import add_logo2
 import webbrowser
 
 # Sidebar __________________________________________________________________________
-st.set_page_config(page_title="Foodix-Silo-Detection", page_icon=":corn:", layout="wide")  
-add_logo()
+st.set_page_config(page_title="Foodix-Silo-Detection", page_icon=":corn:", layout="wide") 
+geosilo_logo = Image.open("images/geosilo_logo.png")
+
+ 
+add_logo2("images/geosilo_logo.png")
 markdown = """
 GitHub Repository: <https://github.com/MRL1998/MCK_Silos.git>
 """
@@ -40,8 +43,7 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-local_css("style/style.css")
-
+# local_css("style/style.css")
 # ---- LOAD ASSETS ----
 lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/private_files/lf30_4lyswkde.json")
 img_silos_satelite = Image.open("images/silos_satelite.png").resize((250, 250))
@@ -49,7 +51,7 @@ img_silos_segmentation = Image.open("images/silos_segmentation.png").resize((250
 img_food = Image.open("images/danger.png")
 img_food = img_food.resize((200, 200))
 img_mckinsey = Image.open('images/McKinsey_Script_Mark_2019.svg.png')
-
+​
 # ---- HEADER SECTION ----
 with st.container():
     st.title("Foodix")
@@ -62,7 +64,7 @@ with st.container():
 #         
 #         • 1 human being dying from famine every 4 seconds...
 # ''')
-
+​
     image_column, text_column = st.columns([3, 1])
     with image_column:
         st.header("Our Mission : Diminish global famine crisis making cereals available for all families and communities across the globe")
@@ -73,9 +75,9 @@ with st.container():
         st.write(
             '''
             • 828 million people were affected by hunger in 2021
-
+​
             • The number of hungry people increased by 150 million in 2019
-
+​
             • 1 human being dying from famine every 4 seconds...
 ''')
         st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
@@ -89,7 +91,7 @@ with st.container():
     url = 'http://localhost:8504/Individual_prediction/'
     if st.button(label="Our tool", type="primary"):
         webbrowser.open_new_tab(url)
-
+​
 # ---- WHAT I DO ----
 with st.container():
     st.write("---")
@@ -97,6 +99,10 @@ with st.container():
     left_column, right_column = st.columns(2)
     with left_column:
         st.subheader("We are 6 really cool McKinsey consultants with 20+ years of experiences")
+    with right_column:
+        st.write('')
+    left_column_2, right_column_2 = st.columns(2)
+    with left_column_2:
         st.write( """
             - Our experience includes, among other things, agriculture, infrastructures, sustainability and data science
             - +700 projects carried out throughout our career
@@ -113,9 +119,10 @@ with st.container():
             """
         )
         st.write("[Our Website >](https://www.mckinsey.com/)")
-    with right_column:
+    with right_column_2:
         st.image(img_mckinsey)
-
+    
+​
 # ---- PROJECTS ----
 with st.container():
     st.write("---")
@@ -134,8 +141,8 @@ with st.container():
     #     )
     #     st.markdown("In case you're interested in our beautiful deep learning model : [see model results...](http://localhost:8501/Classification_model)")
 with st.container():
-    text_column, image_column_1, image_column_2 = st.columns([3, 2, 2])
-    with text_column:
+    text_column_1, image_column_1 = st.columns([3, 2])
+    with text_column_1:
         st.subheader("Step 1 : Classification of Silos from Satelite images")
         st.write(
             """
@@ -144,6 +151,11 @@ with st.container():
                 Finaly, the classification is based on whether or not the model can find silos in the image, representing a certain zone of 128x128m.
             """
         )
+    with image_column_1:
+        st.image(img_silos_satelite)
+    
+    text_column_2, image_column_2 = st.columns([3, 2])
+    with text_column_2:
         st.subheader("Step 2 : Image Segmentation and exact localization of silos")
         st.write(
             """
@@ -151,7 +163,5 @@ with st.container():
                 To achieve this goal, we use a UNet algorithm with an Adam optimizer and a root mean square error loss.
             """
         )
-    with image_column_1:
-        st.image(img_silos_satelite)
     with image_column_2:
         st.image(img_silos_segmentation)
