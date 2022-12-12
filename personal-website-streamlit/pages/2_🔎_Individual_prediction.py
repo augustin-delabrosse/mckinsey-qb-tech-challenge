@@ -1,9 +1,11 @@
+
+from utils.add_logo import add_logo2
 import streamlit as st
 import matplotlib.pyplot as plt
 import os
-from utils.add_logo import add_logo2
 import tensorflow as tf
 from utils.classif import classif_silo
+from utils.segment import segment_silo
 import os
 import io
 from PIL import Image
@@ -38,7 +40,8 @@ def saveImage(byteImage):
    
     return imgFile
 
-model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
+classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
+segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model'))
 
 # Main Body __________________________________________________________________________
 with st.container():
@@ -57,7 +60,7 @@ if list_file_png:
     # Collect bytes
     files_bytes = [file.read() for file in list_file_png]
     # Apply model
-    probas = classif_silo(files_bytes, model)
+    probas = classif_silo(files_bytes, classif_model)
 
     # Plotting the proportion of images having silos
     n_pic_silos = np.sum(probas>.5)
@@ -67,42 +70,65 @@ if list_file_png:
         "Number" : [n_pic_silos, n_pic_no_silos]
     })
     col1, col2, col3 = st.columns(3)
-    with col1:
-        st.write(f"Repartition of the images :")
     with col2:
-        st.bar_chart(data_bar_chart, x="Type", y="Number", width=50)
+        st.markdown("<span style='text-align: center; color: black;'>**Repartition of the images**</span>", unsafe_allow_html=True)
+        st.bar_chart(data_bar_chart, x="Type", y="Number", width=200, use_container_width=False)
 
     st.write(f"✅ Silos detected in {np.sum(probas>.5)} images.")
 
-
-    col1, col2, col3, col4, col5 = st.columns(5)
-    col_silos = [col1, col4]
     idx_silos = 0
     list_no_silos = []
-    proba_no_silos = []
-
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col_silos_class = [col1, col4]
+    col_silos_segm = [col2, col5]
     for idx, file_pgn in enumerate(list_file_png):
         proba = probas[idx]
+
+        if idx_silos%2==0:
+            col1, col2, col3, col4, col5 = st.columns(5)
+            col_silos_class = [col1, col4]
+            col_silos_segm = [col2, col5]
+
         if proba>.5:
-            with col_silos[idx_silos%2]:
+            if (idx_silos%2==0):
+                title1 = file_pgn.name
+            else:
+                title2 = file_pgn.name
+
+
+            with col_silos_class[idx_silos%2]:
                 st.image(file_pgn)
-                st.write(f"File : {file_pgn.name}")
+                #st.write(f"{file_pgn.name}")
+                
+            with col_silos_segm[idx_silos%2]:
+                file_bytes = file_pgn.read()
+                segmented_image = segment_silo(file_bytes, segment_model)
+                st.image(segmented_image, clamp=True)
+                #st.write(' ')
+                #st.write(' ')
+                #st.write(' ')
+                #st.write(' ')
+
             idx_silos += 1
+
         else:
             list_no_silos += [file_pgn]
-            proba_no_silos += [proba]
+        
+        # Display the title
+        if idx_silos%2==0:
+            col1_temp, col2_temp = st.columns(2)
+            with col1_temp:
+                st.write(f"File : {title1}")
+            with col2_temp:
+                st.write(f"&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;File : {title2}")
+
     
     st.write(' ')
     st.write(f"❌ No silo detected in {len(list(probas))-np.sum(probas>.5)} images.")
 
-
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     col_no_silos = [col1, col2, col3, col4, col5, col6]
     for idx, file_pgn in enumerate(list_no_silos):
-        proba = proba_no_silos[idx]
-        if proba>.5:
-            pass
-        else:
-            with col_no_silos[idx%6]:
-                st.image(file_pgn)
-                st.write(f"File : {file_pgn.name}")
+        with col_no_silos[idx%6]:
+            st.image(file_pgn)
+            st.write(f"File : {file_pgn.name}")

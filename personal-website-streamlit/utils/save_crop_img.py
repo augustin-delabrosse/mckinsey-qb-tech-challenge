@@ -18,9 +18,9 @@ import cv2
 
 def save_crop_image(m, top_left_coordinates, bottom_right_coordinates):
     m.fit_bounds([top_left_coordinates, bottom_right_coordinates]) 
-    img_data = m._to_png(5)
+    img_data = m._to_png(1)
     img_data = Image.open(io.BytesIO(img_data))
     box = (430, 75, 930, 575)
     img_data = img_data.crop(box)
-    img_data.save('images/demonstration.png')
+    img_data.save('data/demonstration.png')
     return img_data
