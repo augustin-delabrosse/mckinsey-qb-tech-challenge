@@ -51,7 +51,7 @@ img_silos_segmentation = Image.open("images/silos_segmentation.png").resize((250
 img_food = Image.open("images/danger.png")
 img_food = img_food.resize((200, 200))
 img_mckinsey = Image.open('images/McKinsey_Script_Mark_2019.svg.png')
-​
+
 # ---- HEADER SECTION ----
 with st.container():
     st.title("Foodix")
@@ -64,7 +64,7 @@ with st.container():
 #         
 #         • 1 human being dying from famine every 4 seconds...
 # ''')
-​
+
     image_column, text_column = st.columns([3, 1])
     with image_column:
         st.header("Our Mission : Diminish global famine crisis making cereals available for all families and communities across the globe")
@@ -75,11 +75,10 @@ with st.container():
         st.write(
             '''
             • 828 million people were affected by hunger in 2021
-​
-            • The number of hungry people increased by 150 million in 2019
-​
+
+            • The number of hungry people increased by 150 million in 2019​
             • 1 human being dying from famine every 4 seconds...
-''')
+    ''')
         st.write("[Learn More >](https://www.fao.org/newsroom/detail/un-report-global-hunger-SOFI-2022-FAO/en)")
         # st.write("##")
     with text_column:
@@ -91,7 +90,7 @@ with st.container():
     url = 'http://localhost:8504/Individual_prediction/'
     if st.button(label="Our tool", type="primary"):
         webbrowser.open_new_tab(url)
-​
+
 # ---- WHAT I DO ----
 with st.container():
     st.write("---")
@@ -122,7 +121,7 @@ with st.container():
     with right_column_2:
         st.image(img_mckinsey)
     
-​
+
 # ---- PROJECTS ----
 with st.container():
     st.write("---")
