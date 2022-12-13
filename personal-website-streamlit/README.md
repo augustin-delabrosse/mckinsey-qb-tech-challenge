@@ -1,31 +1,24 @@
-# Foodix Satelite image analysis tool 🛠:
+# Foodix Satellite image analysis tool 🛠:
 
 This tool helps the sales team of Foodix to identify and locate Silos accross the whole globe, thus enabling them to find new potential customers. 
 Usecases are to detect Silos and sell them their superior technology, or to identify areas with out any Silos.
 
 ## Homepage
-General information about the business and about McKinsey
-
-## Check out the website of McKinsey here
-📢 https://www.mckinsey.com/
-
-## ______________________
-
-______________________
-
+General information about the business and about McKinsey.  
+  
+📢 Check out the website of McKinsey here: https://www.mckinsey.com/  
+  
 ## Individual Predictions
-
 Upload any of your pictures and check if there is a Silo in it.
 
 ## Check your coordinates
-
 Check any coordinates worldwide and see if there are some silos at that given coordination.
 
-## Screenshots
-![Screenshots](/demo/screenshot1.jpg?raw=true)
-![Screenshots](/demo/screenshot2.jpg?raw=true)
-![Screenshots](/demo/screenshot3.jpg?raw=true)
-
+## Image segmentation
+Highlight the silos within an image.  
+  
+![Alt text](images/silos_satelite.PNG?raw=true "Satellite image")
+![Alt text](images/silos_segmentation.PNG?raw=true "Image segmentation")
 
 ## Requirements
 ```
@@ -40,8 +33,8 @@ leafmap==0.14.0
 plotly==5.9.0
 ```
 
-## Model
-Please unzip the classification and segmentation models that are in the folder models.  
+## Models
+Please unzip the classification and the segmentation models that are in the folder models.  
 Leave them in the same folder.  
   
 ## Run the app
