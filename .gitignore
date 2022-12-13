@@ -1,6 +1,8 @@
-*.png
-~/classification_model/
-~/.streamlit/
+/**/*.png
+/**/*.log
+/**/classification_model/
+/**/segmentation_model/
+/**/.streamlit/
 
 # VSCode
 .vscode/*
