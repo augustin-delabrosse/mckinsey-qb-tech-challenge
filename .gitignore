@@ -1,4 +1,4 @@
-*.png
+**/*.png
 *.log
 **/classification_model/
 **/segmentation_model/
