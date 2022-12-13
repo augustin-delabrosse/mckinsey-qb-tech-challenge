@@ -3,6 +3,7 @@
 **/classification_model/
 **/segmentation_model/
 **/.streamlit/
+**/__pycache__/
 
 # VSCode
 .vscode/*
