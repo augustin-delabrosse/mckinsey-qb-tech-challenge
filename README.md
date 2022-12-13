@@ -1,7 +1,9 @@
 # Foodix Satellite image analysis tool 🛠:
 
-This tool helps the sales team of Foodix to identify and locate Silos accross the whole globe, thus enabling them to find new potential customers. 
-Usecases are to detect Silos and sell them their superior technology, or to identify areas with out any Silos.
+This tool helps the sales team of Foodix to identify and locate Silos accross the whole globe, thus enabling them to find new potential customers.  
+Usecases are to detect Silos and sell them their superior technology, or to identify areas with out any Silos.  
+  
+🏆 This project was awarded the first price of the McKinsey hackathon.  
 
 ## Homepage
 General information about the business and about McKinsey.  
