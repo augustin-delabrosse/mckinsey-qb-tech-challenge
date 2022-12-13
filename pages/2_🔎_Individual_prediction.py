@@ -113,7 +113,11 @@ if list_file_png:
 
         else: # No silo detected
             list_no_silos += [file_pgn]
-    
+    if idx_silos%2!=0:
+        col1_temp, col2_temp = st.columns(2)
+        with col1_temp:
+            st.write(f"File : {title1}")
+            
     # Display the images where no silo was detected
     st.write("")
     st.write(f"❌ No silo detected in {len(list(probas))-np.sum(probas>.5)} images.")
