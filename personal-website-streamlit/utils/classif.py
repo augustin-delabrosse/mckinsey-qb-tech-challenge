@@ -14,18 +14,16 @@ def classif_silo(file_bytes, model):
     #### Parameters ####
     BATCH_SIZE = 32 # Big enough to measure an F1-score
     AUTOTUNE = tf.data.experimental.AUTOTUNE # Adapt preprocessing and prefetching dynamically
-    SHUFFLE_BUFFER_SIZE = 1024 # Shuffle the training data by a chunck of 1024 observations
     CHANNELS = 3
     IMG_SIZE = 256
     #####################
 
     # image preprocessing
     def parse(image_bytes):
-        img=tf.image.decode_jpeg(image_bytes,channels=3)
+        img=tf.image.decode_jpeg(image_bytes, channels=CHANNELS)
         img=tf.cast(img, tf.float32)
         img/=255.0
-        img=tf.image.resize(img, (256,256))
-        #img=tf.expand_dims(img, axis=0)
+        img=tf.image.resize(img, (IMG_SIZE,IMG_SIZE))
         return img
     
     dataset = tf.data.Dataset.from_tensor_slices((file_bytes))

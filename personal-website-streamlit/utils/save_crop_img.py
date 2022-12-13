@@ -1,8 +1,6 @@
 import io
 from PIL import Image
-import leafmap.foliumap as leafmap
-import os 
-import cv2
+from selenium import webdriver
 
 """
     plotly_hist(lat, lon): 
@@ -16,11 +14,20 @@ import cv2
         Output: Cropped image of location
 """
 
+
 def save_crop_image(m, top_left_coordinates, bottom_right_coordinates):
     m.fit_bounds([top_left_coordinates, bottom_right_coordinates]) 
-    img_data = m._to_png(1)
+
+    try: # Check for chrome
+        driver = webdriver.Chrome()
+        img_data = m._to_png(delay=1, driver=driver)
+    except: # If not use Firefox
+        img_data = m._to_png(delay=1)
+        pass
+
     img_data = Image.open(io.BytesIO(img_data))
     box = (430, 75, 930, 575)
     img_data = img_data.crop(box)
-    img_data.save('data/demonstration.png')
+    img_data.save('images/demonstration.png')
+
     return img_data

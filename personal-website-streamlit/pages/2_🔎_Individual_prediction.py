@@ -1,4 +1,3 @@
-
 from utils.add_logo import add_logo2
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -32,7 +31,6 @@ augustin.de-la-brosse@hec.edu
 michael.liersch@hec.edu
 """
 st.sidebar.info(markdown)
-# Model _______________________________________________________________________
 
 def saveImage(byteImage):
     bytesImg = io.BytesIO(byteImage)
@@ -40,6 +38,7 @@ def saveImage(byteImage):
    
     return imgFile
 
+# Models _____________________________________________________________________________
 classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
 segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model'))
 
@@ -52,7 +51,6 @@ with st.container():
            To upload an individual picture simply drag and drop it in the box.
         '''
     )
-
 
 list_file_png = st.file_uploader("Upload a PNG image", type=([".png"]), accept_multiple_files=True)
 
@@ -74,7 +72,7 @@ if list_file_png:
         st.markdown("<span style='text-align: center; color: black;'>**Repartition of the images**</span>", unsafe_allow_html=True)
         st.bar_chart(data_bar_chart, x="Type", y="Number", width=200, use_container_width=False)
 
-    st.write(f"✅ Silos detected in {np.sum(probas>.5)} images.")
+    st.write(f"✅ Silo detected in {np.sum(probas>.5)} images.")
 
     idx_silos = 0
     list_no_silos = []
@@ -89,41 +87,35 @@ if list_file_png:
             col_silos_class = [col1, col4]
             col_silos_segm = [col2, col5]
 
-        if proba>.5:
+        if proba>.5: # Silo detected
             if (idx_silos%2==0):
                 title1 = file_pgn.name
             else:
                 title2 = file_pgn.name
 
-
             with col_silos_class[idx_silos%2]:
                 st.image(file_pgn)
-                #st.write(f"{file_pgn.name}")
                 
             with col_silos_segm[idx_silos%2]:
                 file_bytes = file_pgn.read()
                 segmented_image = segment_silo(file_bytes, segment_model)
                 st.image(segmented_image, clamp=True)
-                #st.write(' ')
-                #st.write(' ')
-                #st.write(' ')
-                #st.write(' ')
 
             idx_silos += 1
 
-        else:
-            list_no_silos += [file_pgn]
-        
-        # Display the title
-        if idx_silos%2==0:
-            col1_temp, col2_temp = st.columns(2)
-            with col1_temp:
-                st.write(f"File : {title1}")
-            with col2_temp:
-                st.write(f"&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;File : {title2}")
+            # Display the title
+            if idx_silos%2==0:
+                col1_temp, col2_temp = st.columns(2)
+                with col1_temp:
+                    st.write(f"File : {title1}")
+                with col2_temp:
+                    st.write(f"&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;File : {title2}")
 
+        else: # No silo detected
+            list_no_silos += [file_pgn]
     
-    st.write(' ')
+    # Display the images where no silo was detected
+    st.write("")
     st.write(f"❌ No silo detected in {len(list(probas))-np.sum(probas>.5)} images.")
 
     col1, col2, col3, col4, col5, col6 = st.columns(6)

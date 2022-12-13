@@ -41,8 +41,8 @@ plotly==5.9.0
 ```
 
 ## Model
-Please download the classification model here : https://drive.google.com/file/d/1ncW194FtWZnhZ8j_ph2zDgpxxFFu03UU/view?usp=sharing.  
-Unzip it and place it into the folder `models` for the webapp to work properly.  
+Please unzip the classification and segmentation models that are in the folder models.  
+Leave them in the same folder.  
   
 ## Run the app
 * Terminal
