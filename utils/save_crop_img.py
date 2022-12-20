@@ -18,10 +18,11 @@ from selenium import webdriver
 def save_crop_image(m, top_left_coordinates, bottom_right_coordinates):
     m.fit_bounds([top_left_coordinates, bottom_right_coordinates]) 
 
-    try: # Check for chrome
+    try: # Check for chrome.
         driver = webdriver.Chrome()
         img_data = m._to_png(delay=1, driver=driver)
-    except: # If not use Firefox
+
+    except: # If not, use Firefox.
         img_data = m._to_png(delay=1)
         pass
 

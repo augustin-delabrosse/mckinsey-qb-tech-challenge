@@ -18,11 +18,11 @@ st.sidebar.info(markdown)
 
 st.sidebar.title("📬 Contact:")
 markdown = """
-zidi.yang@hec.edu 
-milos.basic@hec.edu
-antoine.mellerio@hec.edu
-camille.epitalon@hec.edu
-augustin.de-la-brosse@hec.edu
+zidi.yang@hec.edu  
+milos.basic@hec.edu  
+antoine.mellerio@hec.edu  
+camille.epitalon@hec.edu  
+augustin.de-la-brosse@hec.edu  
 michael.liersch@hec.edu
 """
 st.sidebar.info(markdown)
@@ -116,7 +116,7 @@ with st.container():
 with st.container():
     text_column_1, image_column_1 = st.columns([3, 2])
     with text_column_1:
-        st.subheader("Step 1 : Classification of Silos from Satelite images")
+        st.subheader("Step 1 : Classification of Silos from Satellite images")
         st.write(
             """
                 We use a deep learning algorithm to classify the image. More precisely, it is a CNN (Convolutionnal Neural Network) with a RMSProp optimizer and a Binary Cross-Entropy loss.

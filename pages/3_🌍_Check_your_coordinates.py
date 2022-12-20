@@ -1,12 +1,12 @@
-import streamlit as st
-import utils
 import io
-import leafmap.foliumap as leafmap
 import os 
-from utils.add_logo import add_logo2
 import tensorflow as tf
+import streamlit as st
+import leafmap.foliumap as leafmap
+import utils
 from utils.classif import classif_silo
 from utils.segment import segment_silo
+from utils.add_logo import add_logo2
 
 classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
 segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model'))
@@ -64,14 +64,22 @@ bottom_right_coordinates = utils.bottom_right_coordinates(coordinates[0], coordi
 
 # Map ______________________________________________________________________________
 api_key = os.environ.get("HEREMAPS_API_KEY")
-m = leafmap.Map(locate_control=True, latlon_control=True, draw_export=True, minimap_control=True, google_map="HYBRID",
-                api_key=api_key, center=coordinates, zoom=18)
+m = leafmap.Map(
+    locate_control=True, 
+    latlon_control=True, 
+    draw_export=True, 
+    minimap_control=True, 
+    google_map="HYBRID",
+    api_key=api_key, 
+    center=coordinates, 
+    zoom=18
+)
 
 m.to_streamlit(height=350)
 
 # Crop Picture _______________________________________________________________________
 if coordinates != "":
-    image_map = utils.save_crop_image(m,top_left_coordinates, bottom_right_coordinates) 
+    image_map = utils.save_crop_image(m, top_left_coordinates, bottom_right_coordinates) 
     st.write("")
     st.write("")
 
