@@ -10,3 +10,4 @@ leafmap==0.14.0
 plotly==5.9.0
 folium==0.14.0
 urllib3==1.26.13
+altair==4.2.0
