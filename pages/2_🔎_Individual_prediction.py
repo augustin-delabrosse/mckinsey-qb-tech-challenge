@@ -39,8 +39,8 @@ def saveImage(byteImage):
     return imgFile
 
 # Models _____________________________________________________________________________
-classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
-segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model'))
+classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model.zip'))
+segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model.zip'))
 
 # Main Body __________________________________________________________________________
 with st.container():
