@@ -51,8 +51,8 @@ with st.container():
 list_file_png = st.file_uploader("Upload a PNG image", type=([".png"]), accept_multiple_files=True)
 
 # Models _____________________________________________________________________________
-classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5classification_model.h5'))
-segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5segmentation_model.h5'))
+classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5classification_model.h5.zip'))
+segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5segmentation_model.h5.zip'))
 
 if list_file_png:
     # Collect bytes
