@@ -19,7 +19,12 @@ def save_crop_image(m, top_left_coordinates, bottom_right_coordinates):
     m.fit_bounds([top_left_coordinates, bottom_right_coordinates]) 
 
     try: # Check for chrome.
-        driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+
+        driver = webdriver.Chrome(options=options)
+        # driver = webdriver.Chrome()
         img_data = m._to_png(delay=1, driver=driver)
 
     except: # If not, use Firefox.
