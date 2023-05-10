@@ -52,7 +52,7 @@ list_file_png = st.file_uploader("Upload a PNG image", type=([".png"]), accept_m
 
 # Models _____________________________________________________________________________
 segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5segmentation_model.h5'))
-classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/h5classification_model.h5.zip'))
+classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/mr_patate_classification_model.h5'))
 
 
 if list_file_png:
