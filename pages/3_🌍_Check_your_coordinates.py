@@ -75,8 +75,8 @@ m = leafmap.Map(
 m.to_streamlit(height=350)
 
 
-classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model.zip'))
-segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model.zip'))
+classif_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/classification_model'))
+segment_model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'models/segmentation_model'))
 
 # Crop Picture _______________________________________________________________________
 if coordinates != "":
