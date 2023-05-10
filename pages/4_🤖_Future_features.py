@@ -61,7 +61,7 @@ st.subheader("Sales process")
 col1, arrow ,col2 = st.columns([4,2, 4])
 
 france_heatmap = Image.open("images/agriculture_france.png")
-marked_map = Image.open("images/map_marked.png")
+marked_map = Image.open("images/map_marked.PNG")
 # arrow_pic = Image.open("images/arrow.png")
 with col1:
      st.markdown("<h5 style='text-align: center; color: midnightblue;'>Multilayered agricultural data heatmaps </h5>", unsafe_allow_html=True)
